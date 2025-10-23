@@ -1669,6 +1669,7 @@ input, select, textarea {
   z-index: -1; /* behind all content */
   background: #000; /* fallback black background */
   animation: fadeIn 1.5s ease-in-out;
+  pointer-events: none; /* Disable interaction to avoid play button overlay */
 }
 
 @keyframes fadeIn {
