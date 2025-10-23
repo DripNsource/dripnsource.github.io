@@ -376,16 +376,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     const bgVideo = document.getElementById("bg-video");
     const fallback = document.getElementById("bg-fallback");
 
-  if (bgVideo) {
-    bgVideo.muted = true;  // ensure muted
-    bgVideo.play().catch(() => {
-      // Autoplay might be blocked, so hide the video or fallback if needed
-      bgVideo.style.display = 'none';
-    });
-  }
-});
-
-
     // Show fallback image if video fails to load
     bgVideo.addEventListener('error', function() {
       fallback.style.display = 'block';  // show fallback image
@@ -397,7 +387,15 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
       fallback.style.display = 'none';   // hide fallback
       bgVideo.style.display = 'block';   // show video
     });
-  });
+
+     if (bgVideo) {
+    bgVideo.muted = true;  // ensure muted
+    bgVideo.play().catch(() => {
+      // Autoplay might be blocked, so hide the video or fallback if needed
+      bgVideo.style.display = 'none';
+    });
+  }
+});
 </script>
 
 
