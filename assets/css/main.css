@@ -1660,13 +1660,15 @@ input, select, textarea {
 /* === Background Video Styles === */
 #bg-video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  width: auto;
   height: 100%;
-  object-fit: cover;
+  transform: translate(-50%, -50%);
+  object-fit: contain; /* show full video without cropping */
   z-index: -1; /* Keeps it behind all content */
   background: #000; /* fallback background */
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 /* Optional: hide video on small devices */
@@ -1683,11 +1685,8 @@ input, select, textarea {
 }
 
 /* === Background Video Fade-In Animation === */
-#bg-video {
-  animation: fadeIn 1.5s ease-in-out;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
