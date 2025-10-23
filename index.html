@@ -360,21 +360,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 ">
 
 <!-- Video background -->
-<video 
-  autoplay 
-  muted 
-  loop 
-  playsinline 
-  id="bg-video" 
-  preload="auto" 
-  style="
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    object-fit: cover; 
-    z-index: -1;
-  "
->
+<video autoplay muted loop playsinline id="bg-video" style="
+  position: fixed; 
+  top: 0; left: 0; 
+  width: 100%; height: 100%; 
+  object-fit: cover; 
+  z-index: -1;
+">
   <source src="videos/dripnsource-glowing-logo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -384,36 +376,47 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     const bgVideo = document.getElementById("bg-video");
     const fallback = document.getElementById("bg-fallback");
 
-    // Show fallback if video errors
-    bgVideo.addEventListener('error', () => {
-      fallback.style.display = 'block';
+    // Show fallback image if video fails to load
+    bgVideo.addEventListener('error', function() {
+      fallback.style.display = 'block';  // show fallback image
+      bgVideo.style.display = 'none';    // hide video
+    });
+
+    // Hide fallback if video plays fine
+    bgVideo.addEventListener('canplay', function() {
+      fallback.style.display = 'none';   // hide fallback
+      bgVideo.style.display = 'block';   // show video
+    });
+
+     if (bgVideo) {
+    bgVideo.muted = true;  // ensure muted
+    bgVideo.play().catch(() => {
+      // Autoplay might be blocked, so hide the video or fallback if needed
       bgVideo.style.display = 'none';
     });
-
-    // Hide fallback if video can play
-    bgVideo.addEventListener('canplay', () => {
-      fallback.style.display = 'none';
-      bgVideo.style.display = 'block';
-    });
-
-    // Try to play the video, catch autoplay restrictions
-    if (bgVideo) {
-      bgVideo.muted = true; // Must be muted for autoplay on mobile
-      bgVideo.play().catch(() => {
-        // If autoplay blocked, hide video and show fallback
-        bgVideo.style.display = 'none';
-        fallback.style.display = 'block';
-      });
-    }
-  });
+  }
+});
 </script>
 
-<!-- Optional: Speed up video playback -->
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 <script>
+  // Adjust background video playback speed
   document.addEventListener("DOMContentLoaded", function() {
     const bgVideo = document.getElementById("bg-video");
     if (bgVideo) {
-      bgVideo.playbackRate = 2.0;
+      bgVideo.playbackRate = 2.0; // 2x speed
     }
   });
 </script>
+
+
+	</body>
+</html>
