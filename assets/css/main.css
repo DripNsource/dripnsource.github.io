@@ -1671,19 +1671,6 @@ input, select, textarea {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Optional: hide video on small devices */
-@media (max-width: 768px) {
-  #bg-video {
-    display: none;
-  }
-  #bg {
-    display: block;
-    background-image: url("../images/fallback-bg.jpg");
-    background-size: cover;
-    background-position: center;
-  }
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
